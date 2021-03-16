@@ -1,40 +1,39 @@
-document.addEventListener("DOMContentLoaded", buttonSearch);
-var apiKey = "68249a1ca55b9f3b6c691fb85d3568c9fb74eede";
-var publicKey = "11a71eed96128ec62bd061b4d096a38a";
+var PRIV_KEY = "68249a1ca55b9f3b6c691fb85d3568c9fb74eede";
+var PUBLIC_KEY = "11a71eed96128ec62bd061b4d096a38a";
 
-function buttonSearch(event) 
-{
+function getMarvelResponse() {
+    var ts = new Date().getTime();
+    var hash = CryptoJS.MD5(ts+PRIV_KEY+PUBLIC_KEY).toString();
+ 
 
-    // Marvel requires timestamp, private key key, public key
+    var titleStartsWith = $('#name').val();
+    var startYear = $('#startYear').val();
 
-    var timestamp = event.timestamp;
-    var req = new XMLHttpRequest();
-    var marvelWebsite = 'http://gateway.marvel.com/v1/public/characters?name='
-    var heroName = document.getElementById('heroName').value;
-    var web = marvelWebsite + heroName + "ts=" + timestamp + 'apiKey=' + apiKey + '$hash=' + publicKey;
+    var url = 'http://gateway.marvel.com:80/v1/public/comics';
+    
+    console.log(url);
 
-        document.getElementById('submit').addEventListener('click', function (event) {
-            document.getElementById('heroName').textContent = "";
-            document.getElementById('description').textContent = "";
-        });
+    $.getJSON(url, {
+        ts: ts,
+        apikey: PUBLIC_KEY,
+        hash: hash,
+        limit: 10,
+        titleStartsWith: titleStartsWith,
+        startYear: startYear
+        
+        
+    })
 
-        req.open('GET', web, true);
-
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.addEventListener('load', function() {
-            if(req.status >= 200 && req.status < 400) {
-                var result = JSON.parse(req.responseText);
-                document.getElementById('name').textContent = result.name;
-                document.getElementById('description').texContent = result.description;
-
-            }
-
-            event.preventDefault();
-        });
-        req.send(null);
-
+    .done(function(data) {
+        console.log(data)
+        for (var i = 0; i < data.data.count; i++) {
+           $('#result').append('<p>'+data.data.results[i].title+'</p')
         }
+    })
 
+    .fail(function(err) {
+        console.log(err);
+    });
+};
 
-
-
+getMarvelResponse();
