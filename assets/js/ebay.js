@@ -18,6 +18,7 @@ var parseGoogleBooks = function(titleStartsWith) {
    
 
     titleVar = titleStartsWith.replace(' ', '+');
+    titleVar = titleVar + "+comic"
     console.log(titleVar);
 
     gURL = "https://www.googleapis.com/books/v1/volumes?q=" + titleVar + "&?key=AIzaSyCmKU98XNUkZoT2jqpQ1_EiwLKAdSZmqpA";
@@ -34,8 +35,38 @@ var googleBooksInfo = function(gURL) {
         }
     }).then(function(data){
         console.log(data);
-
+        readComicsFunc1(data);
+        readComicsFunc2(data);
+        readComicsFunc3(data);
     });
+};
+
+var readComicsFunc1 = function(data) {
+    console.log("First comic " + data.items[0]);
+    console.log(data.items[0].volumeInfo.imageLinks.smallThumbnail);
+
+    $("#read1Img").attr("src", data.items[0].volumeInfo.imageLinks.smallThumbnail);
+    $("#read1Title").html(data.items[0].volumeInfo.title);
+    $("#read1Bio").html(data.items[0].searchInfo.textSnippet);
+
+};
+
+var readComicsFunc2 = function(data) {
+    console.log(data.items[1]);
+
+    $("#read2Img").attr("src", data.items[1].volumeInfo.imageLinks.smallThumbnail);
+    $("#read2Title").html(data.items[1].volumeInfo.title);
+    $("#read2Bio").html(data.items[1].searchInfo.textSnippet);
+
+};
+
+var readComicsFunc3 = function(data) {
+    console.log(data.items[2]);
+
+    $("#read3Img").attr("src", data.items[2].volumeInfo.imageLinks.smallThumbnail);
+    $("#read3Title").html(data.items[2].volumeInfo.title);
+    $("#read3Bio").html(data.items[2].searchInfo.textSnippet);
+
 };
 
 var queryButton = document.getElementById("marvelQuery")
