@@ -1,15 +1,29 @@
-var PRIV_KEY = "68249a1ca55b9f3b6c691fb85d3568c9fb74eede";
-var PUBLIC_KEY = "11a71eed96128ec62bd061b4d096a38a";
 
-function getMarvelResponse() {
+
+
+
+
+
+var PRIV_KEY = "e5adbf59cf74376ae819dac9a3acf80014e3250d";
+var PUBLIC_KEY = "52f2436e7c8155ca67ba599eece92c66";
+
+var queryButton = document.getElementById("marvelQuery")
+    
+    queryButton.addEventListener("click", function(){
+        var titleStartsWith = $('#name').val();
+        var startYear = $('#startYear').val();
+
+    getMarvelResponse(titleStartsWith,startYear)
+});
+
+function getMarvelResponse(title,year) {
     var ts = new Date().getTime();
     var hash = CryptoJS.MD5(ts+PRIV_KEY+PUBLIC_KEY).toString();
- 
+    console.log("get Marvel response"+title,year)
 
-    var titleStartsWith = $('#name').val();
-    var startYear = $('#startYear').val();
+    
 
-    var url = 'http://gateway.marvel.com:80/v1/public/comics';
+    var url = 'http://gateway.marvel.com/v1/public/comics';
     
     console.log(url);
 
@@ -17,9 +31,9 @@ function getMarvelResponse() {
         ts: ts,
         apikey: PUBLIC_KEY,
         hash: hash,
-        limit: 10,
-        titleStartsWith: titleStartsWith,
-        startYear: startYear
+        limit: 5,
+        titleStartsWith: title,
+        startYear: year
         
         
     })
@@ -27,7 +41,9 @@ function getMarvelResponse() {
     .done(function(data) {
         console.log(data)
         for (var i = 0; i < data.data.count; i++) {
-           $('#result').append('<p>'+data.data.results[i].title+'</p')
+           $('#result').append('<p>'+data.data.results[i].title+'</p>')
+           
+           console.log($("#result"))
         }
     })
 
@@ -36,4 +52,6 @@ function getMarvelResponse() {
     });
 };
 
-getMarvelResponse();
+//$('#result').append('<p>"test data"</p')
+
+
