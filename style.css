@@ -1,0 +1,33 @@
+  
+body {
+    background: rgb(70, 7, 7);
+    color: #ddd;
+}
+
+.Jumbotron.large {
+    padding: 1.5rem;
+}
+.Jumbotron {
+    color: #eee;
+    border-bottom: 3px solid #222;
+    background: rgb(2, 5, 22);
+}
+
+.queryOptions {
+    background: #333;
+    border-radius: 10px;
+}
+
+.results {
+    border-top: 3px solid #666;
+    background: #444;
+}
+
+label {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.loading {
+	margin: 50px auto;
+}
