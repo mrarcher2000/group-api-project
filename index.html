@@ -1,164 +1,89 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marvel Comic Finder</title>
-  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="./search.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Marvel Search with Google Book</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation-flex.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="jellybox.css">
 </head>
+
 <body>
-  <!-- Start Top Bar -->
-  <div class="top-bar">
-    <div class="row">
-      <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text">MARVEL</li>
-          <li class="has-submenu">
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><input id="name" type="search" placeholder="Search"></li>
-          <li><button id="marvelQuery" type="button" class="button">Search</button></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- End Top Bar -->
-  <br>
-  <!-- You can now combine a row and column if you just need a 12 column row -->
-  <div class="row">
-    <div class="medium-6 columns">
-      <img class="thumbnail" src="https://placehold.it/650x350">
-      <div class="media-object">
-        <div class="media-object-section">
-          <div class="thumbnail">
-            <img src="assets/img/media-object/avatar-1.jpg">
-          </div>
-        </div>
-        <div class="media-object-section">
-          <h4>Dreams feel real while we're in them.</h4>
-          <h5> Spidermans backstory is a tragic one when he was a boy he lost both his parents in a brutal accident</h5>
-        </div>
-      </div>
-    </div>
-    <div class="medium-6 large-5 columns">
-      <h3 id="characterName">Search a Character</h3>
-      <p>Item specifics from Ebay api</p>
-      <label>Issues
-        <select>
-          <option class="bacon" value="husker">Small</option>
-          <option value="starbuck">Medium</option>
-          <option value="hotdog">Large</option>
-          <option value="apollo">Yeti</option>
-        </select>
-      </label>
-      <a href="#" class="button large expanded">Buy Now</a>
-    </div>
-  </div>
-  <div class="column row">
-    <hr>
-    <ul class="tabs" data-tabs id="example-tabs">
-      <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Read</a></li>
-      <li class="tabs-title"><a href="#panel2">Buy from others coming soon...</a></li>
-    </ul>
-    <div class="tabs-content" data-tabs-content="example-tabs">
-      <div class="tabs-panel is-active" id="panel1">
-        <h4>Read Comics</h4>
+	<!-- Here is the Jumbotron area for foundation -->
+	<div class="Jumbotron large">
+		<div class="row column text-center">
+			<h1>SuperHero Search Marvel and Google Books</h1>
+			<p class="lead">Search your favorite Marvel Hero on 
+				<a href="https://developer.marvel.com/"> Marvel Comics API</a> and the <a href="https://developers.google.com/books">Google Books API</a>
+			</p>
+		</div>
+	</div>
 
-        <div id="read1" class="media-object stack-for-small">
-          <div class="media-object-section">
-            <img id="read1Img" class="thumbnail" src="https://placehold.it/200x200">
-          </div>
-          <div class="media-object-section">
-            <h5 id="read1Title">bio</h5>
-            <p id="read1Bio">I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is
-              like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define
-              or destroy you.</p>
-          </div>
-        </div>
-        
-        <div id="read2" class="media-object stack-for-small">
-          <div class="media-object-section">
-            <img id="read2Img" class="thumbnail" src="https://placehold.it/200x200">
-          </div>
-          <div class="media-object-section">
-            <h5 id="read2Title">bio</h5>
-            <p id="read2Bio">I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is
-              like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define
-              or destroy you</p>
-          </div>
-        </div>
 
-        <div id="read3" class="media-object stack-for-small">
-          <div class="media-object-section">
-            <img id="read3Img" class="thumbnail" src="https://placehold.it/200x200">
-          </div>
-          <div class="media-object-section">
-            <h5 id="read3Title">bio</h5>
-            <p id="read3Bio">I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is
-              like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define
-              or destroy you</p>
-          </div>
-        </div>
-      </div>
+	<!-- Search options row  Using Foundation CSS with Jellybox still animations as CSS -->
+	<div class="row align-bottom queryoptions">
+		<div class="columns small-12 medium-expand">
+			<label>SuperHero Name-Enter First Characters
+				<input type="text" id="name-starts" placeholder="A - Z">
+			</label>
+		</div>
 
-      <div class="tabs-panel" id="panel2">
-        <div class="row medium-up-3 large-up-5">
-          <div class="column">
-            <img class="thumbnail" src="https://placehold.it/350x200">
-            <h5>Amazon API <small>$22</small></h5>
-            <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod
-              semper, magna diam.</p>
-            <a href="#" class="button hollow tiny expanded">Buy Now</a>
-          </div>
-          <div class="column">
-            <img class="thumbnail" src="https://placehold.it/350x200">
-            <h5>MidTownComics.com <small>$22</small></h5>
-            <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod
-              semper, magna diam.</p>
-            <a href="#" class="button hollow tiny expanded">Buy Now</a>
-          </div>
-          <div class="column">
-            <img class="thumbnail" src="https://placehold.it/350x200">
-            <h5>things from another world<small>$22</small></h5>
-            <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod
-              semper, magna diam.</p>
-            <a href="#" class="button hollow tiny expanded">Buy Now</a>
-          </div>
-          <div class="column">
-            <img class="thumbnail" src="https://placehold.it/350x200">
-            <h5>Other Product <small>$22</small></h5>
-            <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod
-              semper, magna diam.</p>
-            <a href="#" class="button hollow tiny expanded">Buy Now</a>
-          </div>
-          <div class="column">
-            <img class="thumbnail" src="https://placehold.it/350x200">
-            <h5>Other Product <small>$22</small></h5>
-            <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod
-              semper, magna diam.</p>
-            <a href="#" class="button hollow tiny expanded">Buy Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row column">
-    <hr>
-    <ul class="menu">
-      <li>Team 10</li>
-      <li><a href="#">JC </a></li>
-      <li><a href="#">NJ</a></li>
-      <li><a href="#">AN</a></li>
-    </ul>
-  </div>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-  <script src="assets/js/ebay.js"></script>
+  <!--This is div to pick number of results, using Foundation Blocks-->
+		<div class="columns small-12 medium-expand">
+			<label>Number of results "5, 10, 15, 20"
+				<select id="num-to-display">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+				</select>
+			</label>
+		</div>
+		
+    
+  <!--this is div box to choose between Marvel and Google books-->
+    <div class="columns small-12 medium-expand">
+			<label>Choose between Marvel and Google Books
+				<select id="apiChoice">
+					<option value="marvel">Marvel API</option>
+					<option value="google">Google Books API</option>
+				</select>
+			</label>
+		</div>
+
+  <!--this is button to call function with onclick to search-->
+		<div class="columns small-12 medium-expand shrink">
+			<button class="button" onclick="apiQuery()">Search</button>
+		</div>
+	</div>
+
+	<!-- This is flex div container for results, using Jellybox CSS from MIT license jellybox CSS-->
+  <!-- Under MIT license, free to use /*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */-->
+
+
+	<div id="data-row-show" class="row small-up-2 medium-up-3 large-up-4 results">
+		<!-- Results print to here, using jelly-box and foundation -->
+		<div class="loading la-square-jelly-box">
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+  <!--JQuery Resource-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!--This is Crypto JS for hashing Marvel Comics API-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+
+  <!-- This is Javascript Page-->
+	<script src="script.js"></script>
 </body>
+
 </html>
