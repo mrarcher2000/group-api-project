@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Marvel Search with Google Book</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation-flex.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="jellybox.css">
+</head>
+
+
+<!-- Foundation grid documentation 
+https://get.foundation/sites/docs/grid.html-->
+
+<body>
+	<!-- Here is the Jumbotron area for foundation Grid-->
+	<div class="Jumbotron large">
+		<div class="row column text-center">
+			<h1>MARVEL HERO SEARCH</h1>
+			<!--Foundation typography in 
+			https://get.foundation/sites/docs/typography-helpers.html-->
+			
+			<p class="lead">Find Marvel Heros on 
+				<a href="https://developer.marvel.com/"> Marvel Comics API</a> and the <a href="https://developers.google.com/books">Google Books API</a>
+			</p>
+		</div>
+	</div>
+
+
+	<!-- Search options row  Using Foundation Grid CSS with Jellybox still animations as CSS -->
+	<div class="row align-bottom queryoptions">
+		<div class="columns small-12 medium-expand">
+			<label>Hero Name-Enter First Characters
+				<input type="text" id="name-starts" placeholder="A - Z">
+			</label>
+		</div>
+
+  <!--This is div to pick number of results, using Foundation Grid-->
+		<div class="columns small-12 medium-expand">
+			<label>Number of results "5, 10, 15, 20"
+				<select id="num-to-display">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+				</select>
+			</label>
+		</div>
+		
+    
+  <!--this is div box to choose between Marvel and Google books-->
+    <div class="columns small-12 medium-expand">
+			<label>Choose between Marvel and Google Books
+				<select id="apiChoice">
+					<option value="marvel">Marvel API</option>
+					<option value="google">Google Books API</option>
+				</select>
+			</label>
+		</div>
+
+  <!--this is button to call function with onclick to search-->
+		<div class="columns small-12 medium-expand shrink">
+			<button class="button" onclick="apiQuery()">Search</button>
+		</div>
+	</div>
+
+	<!-- This is flex div container for results, using Jellybox CSS for loading animation
+	free to use animations under MIT license-->
+  <!-- Under MIT license, free to use /*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */-->
+
+<!--Foundation Block Grids for data show
+https://get.foundation/sites/docs/grid.html-->
+	<div id="data-row-show" class="row small-up-2 medium-up-3 large-up-4 results">
+		<!-- Results print to here, using jelly-box for CSS animation, link below and foundation grid-->
+		<div class="loading la-ball-atom la-3x">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+  <!--JQuery Resource-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!--This is Crypto JS for hashing Marvel Comics API-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+
+  <!-- This is Javascript Page-->
+	<script src="script.js"></script>
+</body>
+
+</html>
