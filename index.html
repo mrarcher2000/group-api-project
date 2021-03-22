@@ -11,27 +11,34 @@
 	<link rel="stylesheet" href="jellybox.css">
 </head>
 
+
+<!-- Foundation grid documentation 
+https://get.foundation/sites/docs/grid.html-->
+
 <body>
-	<!-- Here is the Jumbotron area for foundation -->
+	<!-- Here is the Jumbotron area for foundation Grid-->
 	<div class="Jumbotron large">
 		<div class="row column text-center">
-			<h1>SuperHero Search Marvel and Google Books</h1>
-			<p class="lead">Search your favorite Marvel Hero on 
+			<h1>MARVEL HERO SEARCH</h1>
+			<!--Foundation typography in 
+			https://get.foundation/sites/docs/typography-helpers.html-->
+			
+			<p class="lead">Find Marvel Heros on 
 				<a href="https://developer.marvel.com/"> Marvel Comics API</a> and the <a href="https://developers.google.com/books">Google Books API</a>
 			</p>
 		</div>
 	</div>
 
 
-	<!-- Search options row  Using Foundation CSS with Jellybox still animations as CSS -->
+	<!-- Search options row  Using Foundation Grid CSS with Jellybox still animations as CSS -->
 	<div class="row align-bottom queryoptions">
 		<div class="columns small-12 medium-expand">
-			<label>SuperHero Name-Enter First Characters
+			<label>Hero Name-Enter First Characters
 				<input type="text" id="name-starts" placeholder="A - Z">
 			</label>
 		</div>
 
-  <!--This is div to pick number of results, using Foundation Blocks-->
+  <!--This is div to pick number of results, using Foundation Grid-->
 		<div class="columns small-12 medium-expand">
 			<label>Number of results "5, 10, 15, 20"
 				<select id="num-to-display">
@@ -60,17 +67,21 @@
 		</div>
 	</div>
 
-	<!-- This is flex div container for results, using Jellybox CSS from MIT license jellybox CSS-->
+	<!-- This is flex div container for results, using Jellybox CSS for loading animation
+	free to use animations under MIT license-->
   <!-- Under MIT license, free to use /*!
  * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
  * Copyright 2015 Daniel Cardoso <@DanielCardoso>
  * Licensed under MIT
  */-->
 
-
+<!--Foundation Block Grids for data show
+https://get.foundation/sites/docs/grid.html-->
 	<div id="data-row-show" class="row small-up-2 medium-up-3 large-up-4 results">
-		<!-- Results print to here, using jelly-box and foundation -->
-		<div class="loading la-square-jelly-box">
+		<!-- Results print to here, using jelly-box for CSS animation, link below and foundation grid-->
+		<div class="loading la-ball-atom la-3x">
+			<div></div>
+			<div></div>
 			<div></div>
 			<div></div>
 		</div>

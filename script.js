@@ -1,14 +1,14 @@
-// this is for CSS
+// this is for loading results, and CSS
 
-let page = 0;
+var page = 0;
 
 // Query the the chosen API with the current choices and modifiers
 // Grabbing values from HTML to assign variables. 
 
-//This is main apiQuery function, if function for Marvel, if else function for Google Books //
+//This is main apiQuery function, if function for Marvel, if else function is for Google Books //
 function apiQuery() {
 
-    //this is the chosen API from index
+    //this is the chosen API from index.html, dropdown
 	var chooseAPI = document.getElementById("apiChoice").value;
 
     //this is name input box
@@ -18,7 +18,7 @@ function apiQuery() {
 	var numbertoDisplay = document.getElementById("num-to-display");
 	var numbertoDisplayValue = numbertoDisplay.options[numbertoDisplay.selectedIndex].value;
 
-    //this parses number to return 
+    //this parses number to return, to display in results
 	var results = parseInt(numbertoDisplayValue);
 
     
@@ -26,29 +26,36 @@ function apiQuery() {
 
 	if (chooseAPI === 'marvel') {
         
-        //checks to see valid input
+        //this checks input, to ensure a valid input entered
 		if (nameStartsWith.length > 0) {
 			nameStarts = `nameStartsWith=${nameStartsWith}`;
 		} else {
 			nameStarts = ``;
 		}
-        //variables for function
+        //variables for function, Marvel requires public and private key
 		var marvelUrl = "http://gateway.marvel.com/v1/public/";
 		var pub_Key = "11a71eed96128ec62bd061b4d096a38a";
 		var priv_Key = "68249a1ca55b9f3b6c691fb85d3568c9fb74eede"; 
 
         //Marvel requires timestamp, hash for valid query
+
 		var ts = new Date().getTime();
 
-		//Uses crypto JS library to help with valid Marvel Call
+		//Uses crypto JS library to help with valid Marvel Call, library linked in index.html
+
 		var hash = CryptoJS.MD5(ts + priv_Key + pub_Key).toString();
-        //search method
+
+        //search method, this is for character search
 		var searchBy = "characters";
         
-        //user inputs
+        //user inputs, template strings
+		//reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+
 		var userInputs = `?${nameStarts}&limit=${results}&offset=${page}`;
 
         //gets data with ajax call from Marvel
+		//reference here: https://api.jquery.com/jquery.ajax/
+
 		$.ajax({
 			type: "GET",
 			url: marvelUrl + searchBy + userInputs,
@@ -61,12 +68,14 @@ function apiQuery() {
 			contentType: "application/json"
 		})
 
-        //then function to go down to dynamic display
+        //then function to go down to Marvel display
 		.then(function (data) {
-			dynamicDisplay(data);
+			marvelDisplay(data);
 		},
+
+		//if error, then shows alert
 		function (error) {
-			alert('Error Found ' + error.responseText);
+			alert('There is an error on the page ' + error.responseText);
 		});
 
         //Google function to go here
@@ -161,15 +170,16 @@ var googleComicsFunc = function(data) {
 
 
 
-// Display the returned data to dynamically change page based on function returns.
+// Display the returned data to dynamically change page based on the Marvel function returns.
 
-function dynamicDisplay(data) {
+function marvelDisplay(data) {
 	pageData = data.data.results;
     
-    //data row from HTML
+    //data row from HTML, tagged data-row-show in html
 	var dataRow = document.getElementById('data-row-show');
 	var rowDataShow = ``;
 
+	//this is the data to get from API call to display for character search
 	for (var i = 0; i < pageData.length; i++) {
 		var name = pageData[i].name;
 		var description = pageData[i].description;
@@ -193,6 +203,7 @@ function dynamicDisplay(data) {
 			`;
 		}
 	}
+	//this is the dynamic to show is rowDataShow area
 	dataRow.innerHTML = rowDataShow;
 }
 
