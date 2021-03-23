@@ -33,7 +33,7 @@ function apiQuery() {
 			nameStarts = ``;
 		}
         //variables for function, Marvel requires public and private key
-		var marvelUrl = "http://gateway.marvel.com/v1/public/";
+		var marvelUrl = "https://gateway.marvel.com/v1/public/";
 		var pub_Key = "11a71eed96128ec62bd061b4d096a38a";
 		var priv_Key = "68249a1ca55b9f3b6c691fb85d3568c9fb74eede"; 
 
